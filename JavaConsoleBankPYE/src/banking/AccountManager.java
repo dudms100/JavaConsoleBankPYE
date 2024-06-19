@@ -8,12 +8,10 @@ import java.util.Set;
 
 public class AccountManager {
     private static Set<Account> accountSet = new HashSet<>();
-    public static Scanner scanner = new Scanner(System.in); // Changed to public static
+    public static Scanner scanner = new Scanner(System.in); 
 
-    // File name for serialization
     private static final String FILE_NAME = "src/banking/AccountInfo.obj";
 
-    // Menu constants
     private static final int MAKE = 1;
     private static final int DEPOSIT = 2;
     private static final int WITHDRAW = 3;
@@ -71,13 +69,13 @@ public class AccountManager {
         int choice = 0;
         try {
             choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline left-over
+            scanner.nextLine(); 
             if (choice < 1 || choice > 6) {
                 throw new IllegalArgumentException("잘못된 메뉴 선택입니다.");
             }
         } catch (InputMismatchException e) {
             System.out.println("숫자를 입력해야 합니다.");
-            scanner.nextLine(); // Clear the buffer
+            scanner.nextLine(); 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -91,7 +89,7 @@ public class AccountManager {
         System.out.println("2.신용신뢰계좌");
         System.out.print("선택: ");
         int type = scanner.nextInt();
-        scanner.nextLine(); // Consume newline left-over
+        scanner.nextLine(); 
         if (type != 1 && type != 2) {
             System.out.println("잘못된 선택입니다.");
             return;
@@ -100,7 +98,6 @@ public class AccountManager {
         System.out.print("계좌번호: ");
         String accountNumber = scanner.nextLine();
 
-        // Check if the account number already exists
         Account existingAccount = findAccount(accountNumber);
         if (existingAccount != null) {
             System.out.print("중복계좌발견됨. 덮어쓸까요?(y or n): ");
@@ -117,10 +114,10 @@ public class AccountManager {
         String ownerName = scanner.nextLine();
         System.out.print("잔고: ");
         int balance = scanner.nextInt();
-        scanner.nextLine(); // Consume newline left-over
+        scanner.nextLine(); 
         System.out.print("기본이자%(정수형태로입력): ");
         int interestRate = scanner.nextInt();
-        scanner.nextLine(); // Consume newline left-over
+        scanner.nextLine(); 
 
         if (type == 1) {
             NormalAccount account = new NormalAccount(accountNumber, ownerName, balance, interestRate);
@@ -143,7 +140,7 @@ public class AccountManager {
         try {
             System.out.print("입금액: ");
             int amount = scanner.nextInt();
-            scanner.nextLine(); // Consume newline left-over
+            scanner.nextLine(); 
 
             if (amount <= 0) {
                 throw new IllegalArgumentException("입금액은 양수만 가능합니다.");
@@ -163,7 +160,7 @@ public class AccountManager {
             System.out.println("입금이 완료되었습니다.");
         } catch (InputMismatchException e) {
             System.out.println("숫자를 입력해야 합니다.");
-            scanner.nextLine(); // Clear the buffer
+            scanner.nextLine(); 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -177,7 +174,7 @@ public class AccountManager {
         try {
             System.out.print("출금액: ");
             int amount = scanner.nextInt();
-            scanner.nextLine(); // Consume newline left-over
+            scanner.nextLine(); 
 
             if (amount <= 0) {
                 throw new IllegalArgumentException("출금액은 양수만 가능합니다.");
@@ -207,7 +204,7 @@ public class AccountManager {
             }
         } catch (InputMismatchException e) {
             System.out.println("숫자를 입력해야 합니다.");
-            scanner.nextLine(); // Clear the buffer
+            scanner.nextLine(); 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -257,7 +254,7 @@ public class AccountManager {
             accountSet = (HashSet<Account>) ois.readObject();
         } catch (FileNotFoundException e) {
             System.out.println("저장된 파일을 찾을 수 없습니다. 새로운 파일을 생성합니다.");
-            saveAccounts(); // Create a new file if it doesn't exist
+            saveAccounts(); 
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("파일을 읽어오는 중 오류가 발생했습니다: " + e.getMessage());
         }

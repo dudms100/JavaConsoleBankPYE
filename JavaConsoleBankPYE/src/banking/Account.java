@@ -52,7 +52,6 @@ public abstract class Account implements Serializable {
     public abstract void withdraw(int amount);
 
     public void deposit(int amount) {
-        // Calculate interest only on deposit
         int interest = (int) (balance * (interestRate / 100.0));
         balance += (amount + interest);
     }
