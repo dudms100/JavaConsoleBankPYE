@@ -61,6 +61,6 @@ public abstract class Account implements Serializable {
         System.out.println("계좌번호: " + accountNumber);
         System.out.println("고객이름: " + ownerName);
         System.out.println("잔고: " + balance);
-        System.out.println("기본이자%(정수형태로입력): " + interestRate);
+        System.out.println("기본이자%: " + interestRate);
     }
 }
