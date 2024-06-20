@@ -277,6 +277,7 @@ public class AccountManager {
     }
 
     // 파일로부터 계좌 정보 불러오기
+    @SuppressWarnings("unchecked")
     private void loadAccounts() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILE_NAME))) {
             accountSet = (HashSet<Account>) ois.readObject();
