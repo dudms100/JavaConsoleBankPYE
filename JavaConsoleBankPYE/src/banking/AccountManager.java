@@ -50,6 +50,9 @@ public class AccountManager {
                     runAutoSaveOption(); // 자동 저장 옵션 설정
                     break;
                 case 7:
+                    playPuzzleGame(); // 퍼즐 게임 실행
+                    break;
+                case 8:
                     saveAccounts(); // 계좌 정보 저장
                     if (autoSaverThread != null && autoSaverThread.isAlive()) {
                         autoSaverThread.interrupt();
@@ -72,7 +75,8 @@ public class AccountManager {
         System.out.println("4.계좌정보출력");
         System.out.println("5.계좌정보삭제");
         System.out.println("6.저장옵션");
-        System.out.println("7.프로그램종료");
+        System.out.println("7.3X3퍼즐게임");
+        System.out.println("8.프로그램종료");
         System.out.print("선택: ");
     }
 
@@ -82,7 +86,7 @@ public class AccountManager {
         try {
             choice = scanner.nextInt();
             scanner.nextLine(); // 입력 버퍼 비우기
-            if (choice < 1 || choice > 7) {
+            if (choice < 1 || choice > 8) {
                 throw new IllegalArgumentException("잘못된 메뉴 선택입니다.");
             }
         } catch (InputMismatchException e) {
@@ -408,6 +412,12 @@ public class AccountManager {
         } catch (IOException e) {
             System.out.println("자동저장 중 오류가 발생했습니다: " + e.getMessage());
         }
+    }
+    
+    // 퍼즐 게임 실행 메서드
+    private void playPuzzleGame() {
+    	threeby3 puzzleGame = new threeby3();
+        puzzleGame.play();
     }
 
     // 메인 메서드
