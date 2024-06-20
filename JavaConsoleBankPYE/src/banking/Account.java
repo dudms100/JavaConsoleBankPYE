@@ -2,14 +2,16 @@ package banking;
 
 import java.io.Serializable;
 
+// 계좌 정보를 저장하는 추상 클래스
 public abstract class Account implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String accountNumber;
-    private String ownerName;
-    private int balance;
-    private int interestRate;
+    private String accountNumber;  // 계좌번호
+    private String ownerName;      // 고객명
+    private int balance;           // 잔고
+    private int interestRate;      // 기본 이자율
 
+    // Account 클래스 생성자
     public Account(String accountNumber, String ownerName, int balance, int interestRate) {
         this.accountNumber = accountNumber;
         this.ownerName = ownerName;
@@ -17,6 +19,7 @@ public abstract class Account implements Serializable {
         this.interestRate = interestRate;
     }
 
+    // 계좌번호 getter 및 setter
     public String getAccountNumber() {
         return accountNumber;
     }
@@ -25,6 +28,7 @@ public abstract class Account implements Serializable {
         this.accountNumber = accountNumber;
     }
 
+    // 고객명 getter 및 setter
     public String getOwnerName() {
         return ownerName;
     }
@@ -33,6 +37,7 @@ public abstract class Account implements Serializable {
         this.ownerName = ownerName;
     }
 
+    // 잔고 getter 및 setter
     public int getBalance() {
         return balance;
     }
@@ -41,6 +46,7 @@ public abstract class Account implements Serializable {
         this.balance = balance;
     }
 
+    // 기본 이자율 getter 및 setter
     public int getInterestRate() {
         return interestRate;
     }
@@ -49,17 +55,17 @@ public abstract class Account implements Serializable {
         this.interestRate = interestRate;
     }
 
+    // 입금 기능을 정의하는 추상 메서드
+    public abstract void deposit(int amount);
+
+    // 출금 기능을 정의하는 추상 메서드
     public abstract void withdraw(int amount);
 
-    public void deposit(int amount) {
-        int interest = (int) (balance * (interestRate / 100.0));
-        balance += (amount + interest);
-    }
+    // 계좌 정보를 출력하는 추상 메서드
+    public abstract void showAccountInfo();
 
-    public void showAccountInfo() {
-        System.out.println("계좌번호: " + accountNumber);
-        System.out.println("고객이름: " + ownerName);
-        System.out.println("잔고: " + balance);
-        System.out.println("기본이자%: " + interestRate);
+    // 자동 저장을 위해 계좌 정보를 문자열로 변환하는 메서드
+    public String toStringForAutoSave() {
+        return String.format("%s,%s,%d,%d,null", accountNumber, ownerName, balance, interestRate);
     }
 }
