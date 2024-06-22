@@ -40,7 +40,7 @@ public class threeby3 {
         while (true) {
             printBoard();
             if (isInitialState()) {
-                System.out.print("클리어!. 게임을 다시 시작할까요? (y/n): ");
+                System.out.print(" 클리어!. 게임을 다시 시작할까요? (y/n): ");
                 char restart = scanner.next().charAt(0);
                 if (restart == 'y' || restart == 'Y') {
                     resetBoard();
@@ -101,51 +101,67 @@ public class threeby3 {
         for (int i = 0; i < 100; i++) {
             int move = random.nextInt(4);
             switch (move) {
-                case 0: moveLeft(); break;
-                case 1: moveRight(); break;
-                case 2: moveUp(); break;
-                case 3: moveDown(); break;
+                case 0: moveLeft(false); break;
+                case 1: moveRight(false); break;
+                case 2: moveUp(false); break;
+                case 3: moveDown(false); break;
             }
         }
     }
 
     // 퍼즐 조각 이동 메서드들
     private void moveLeft() {
+        moveLeft(true);
+    }
+
+    private void moveRight() {
+        moveRight(true);
+    }
+
+    private void moveUp() {
+        moveUp(true);
+    }
+
+    private void moveDown() {
+        moveDown(true);
+    }
+
+    private void moveLeft(boolean showMessage) {
         if (emptyCol < 2) {
             board[emptyRow][emptyCol] = board[emptyRow][emptyCol + 1];
             board[emptyRow][emptyCol + 1] = 'X';
             emptyCol++;
-        } else {
+        } else if (showMessage) {
             System.out.println("--이동불가--");
         }
     }
 
-    private void moveRight() {
+    private void moveRight(boolean showMessage) {
         if (emptyCol > 0) {
             board[emptyRow][emptyCol] = board[emptyRow][emptyCol - 1];
             board[emptyRow][emptyCol - 1] = 'X';
             emptyCol--;
-        } else {
+        } else if (showMessage) {
             System.out.println("--이동불가--");
         }
     }
 
-    private void moveUp() {
+    private void moveUp(boolean showMessage) {
         if (emptyRow < 2) {
             board[emptyRow][emptyCol] = board[emptyRow + 1][emptyCol];
             board[emptyRow + 1][emptyCol] = 'X';
             emptyRow++;
-        } else {
+        } else if (showMessage) {
             System.out.println("--이동불가--");
         }
     }
 
-    private void moveDown() {
+    private void moveDown(boolean showMessage) {
         if (emptyRow > 0) {
             board[emptyRow][emptyCol] = board[emptyRow - 1][emptyCol];
             board[emptyRow - 1][emptyCol] = 'X';
             emptyRow--;
-        } else {
+        } else if (showMessage) {
             System.out.println("--이동불가--");
         }
     }
