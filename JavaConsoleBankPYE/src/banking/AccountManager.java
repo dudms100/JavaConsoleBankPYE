@@ -12,8 +12,8 @@ public class AccountManager {
     public static Scanner scanner = new Scanner(System.in);
 
     // 파일 경로 상수 정의
-    private static final String FILE_NAME = "src/banking/AccountInfo.obj"; // 계좌 정보 파일
-    private static final String AUTO_SAVE_FILE_NAME = "src/banking/AutoSaveAccount.txt"; // 자동 저장 파일
+    private static final String FILE_NAME = "AccountInfo.obj"; // 계좌 정보 파일
+    private static final String AUTO_SAVE_FILE_NAME = "AutoSaveAccount.txt"; // 자동 저장 파일
 
     // 자동 저장을 위한 쓰레드
     private AutoSaver autoSaverThread;
